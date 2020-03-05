@@ -5,27 +5,26 @@ CREATE DATABASE "giphy_search_favorites";
 -- Each favorite image can be assigned 1 of the following categories as a Foreign Key
 
 -- Category table
+CREATE TABLE "category" (
+    "id" SERIAL PRIMARY KEY,
+    "category_name" VARCHAR (100) NOT NULL
+);
+
+INSERT INTO "category" ("category_name")
+VALUES ('funny'), ('sports'), ('memes'), ('nsfw');
+
 CREATE TABLE "gifs" (
     "id" SERIAL PRIMARY KEY,
     "description" VARCHAR (100) NOT NULL,
-    "url" VARCHAR (250) NOT NULL
+    "url" VARCHAR (250) NOT NULL,
+    "category_id" integer REFERENCES "category"
 );
 
-CREATE TABLE "category" (
-    "id" SERIAL PRIMARY KEY,
-    "category_name" VARCHAR (100) NOT NULL,
-    "gif_id" integer REFERENCES "gifs" 
-);
+INSERT INTO "gifs" ("description", "url", "category_id")
+VALUES ('another test', 'http://google.com', 1), ('test', 'google.com', 4);
 
--- Default categories. You may change them :)
-INSERT INTO "category" ("category_name", "gif_id")
-VALUES ('nsfw', 2);
-
-INSERT INTO "gifs" ("description", "url")
-VALUES ('another test', 'http://google.com');
-
--- join the two tables for when we display gifs by category
-SELECT  "gifs"."id", "gifs"."description", "gifs"."url", "category"."category_name" 
+-- join the tables
+SELECT  "gifs"."id", "gifs"."description", "gifs"."url", "gifs"."category_id", "category"."category_name"
 FROM "gifs"
-JOIN "category" ON "gifs"."id" = "category"."gif_id";
+JOIN "category" ON "gifs"."category_id" = "category"."id";
 

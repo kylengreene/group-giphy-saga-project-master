@@ -6,6 +6,9 @@ const router = express.Router();
 // return all favorite images
 router.get('/', (req, res) => {
   res.sendStatus(200);
+  // SELECT  "gifs"."id", "gifs"."description", "gifs"."url", "gifs"."category_id", "category"."category_name"
+  // FROM "gifs"
+  // JOIN "category" ON "gifs"."category_id" = "category"."id";
 });
 
 // add a new favorite 
