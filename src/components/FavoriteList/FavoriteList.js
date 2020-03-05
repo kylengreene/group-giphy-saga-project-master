@@ -10,11 +10,11 @@ class FavoriteList extends Component {
     render() {
         return (
             <div>
-                <h1>FavoriteList</h1>
+                <h1>Favorite GIFs</h1>
+                
             </div>
         );
     }
-
 }
 
 const mapReduxStateToProps = (reduxState) => ({

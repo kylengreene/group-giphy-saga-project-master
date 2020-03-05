@@ -10,7 +10,8 @@ class FavoriteListItem extends Component {
     render() {
         return (
             <div>
-                <h1>FavoriteListItem</h1>
+                <h1>Favorite Item</h1>
+                
             </div>
         );
     }
