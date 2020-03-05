@@ -4,12 +4,17 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import FavoriteList from '../FavoriteList/FavoriteList'
 import FavoriteListItem from '../FavoriteListItem/FavoriteListItem'
 
-
-
 class SearchForm extends Component {
 
     state = {
         searchTerm: ''
+    }
+
+    addToFavorites = (id) => {
+        this.props.dispatch({
+            type: 'ADD_GIF_TO_FAVORITES',
+            payload: id
+        })
     }
 
     getGIFs = () => {
@@ -36,10 +41,11 @@ class SearchForm extends Component {
         return (
             <div>
                 <input onChange={(event) => this.handleChange(event)} type="text" placeholder=""></input>
-                <button onClick={this.searchGiphy}>Search!</button>
+                <button onClick={this.searchGiphy}>Search</button>
                 <ul>
                     {this.props.reduxState.searchReducer
-                    .map((item)=><li key={item.data.id}>{item.data.img_url}</li>)}
+                    .map((item)=><li key={item.id}><img src={item.url} /></li>)}
+                    <button onClick={() => this.addToFavorites(this.props.reduxState.searchReducer[0].data.id)}>Add to Favorites</button>
                 </ul>
             </div>
         );
@@ -51,3 +57,5 @@ const mapReduxStateToProps = (reduxState) => ({
 });
 
 export default connect(mapReduxStateToProps)(SearchForm);
+
+//Send response object's data 

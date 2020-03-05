@@ -12,11 +12,11 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>Giphy Search!</h1>
+        <h1>Welcome to the Giphy project</h1>
+        
       </div>
     );
   }
-  
 }
 
 const mapReduxStateToProps = (reduxState) => ({
