@@ -27,7 +27,7 @@ router.post('/', (req, res) => {
       res.sendStatus(201);
     })
     .catch(error => {
-      console.log(`Error adding a new Koala`, error);
+      console.log(`Error adding a favorite`, error);
       res.sendStatus(500);
     });
 });

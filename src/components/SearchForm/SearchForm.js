@@ -10,10 +10,10 @@ class SearchForm extends Component {
         searchTerm: ''
     }
 
-    addToFavorites = (id) => {
+    addToFavorites = (item) => {
         this.props.dispatch({
             type: 'ADD_GIF_TO_FAVORITES',
-            payload: id
+            payload: item
         })
     }
 
@@ -45,7 +45,7 @@ class SearchForm extends Component {
                 <ul>
                     {this.props.reduxState.searchReducer
                     .map((item)=><li key={item.id}><img src={item.url} /></li>)}
-                    <button onClick={() => this.addToFavorites(this.props.reduxState.searchReducer[0].data.id)}>Add to Favorites</button>
+                    <button onClick={() => this.addToFavorites(this.props.reduxState.searchReducer[0])}>Add to Favorites</button>
                 </ul>
             </div>
         );

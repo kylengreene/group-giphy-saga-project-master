@@ -25,23 +25,28 @@ function* watcher() {
 
 function* searchGiphy(action) {
    let response = yield axios.get(`http://api.giphy.com/v1/gifs/random?tag=${action.payload}&api_key=Ebzn0mK2MW968EX6G8hJhT83ValOZy7Y`)
-    let fileterdResponse= {
-        id: response.data.id,
-        url: response.data.image_url,
-        description: response.data.title,
+   console.log('logging respone from searchGiphy', response );
+    
+   let filteredResponse= {
+        id: response.data.data.id,
+        url: response.data.data.image_url,
+        description: response.data.data.title,
         category: '',
     }
-    yield put({ type: 'SET_GIF_RESULT', payload: fileterdResponse })
+    console.log('logging filtered response', filteredResponse);
+    
+    yield put({ type: 'SET_GIF_RESULT', payload: filteredResponse })
 }
 
 function* addGifToFavorites(action) {
-    console.log('logging giphyDescription in addGifToFavorites', action.payload);
-    const objectToPost = action.payload;
+    
+    let objectToPost = action.payload;
+    console.log('logging action.payload in addGifToFavorites', objectToPost);
     try {
         yield axios({
             method: 'POST',
             url: '/api/favorite',
-            data: { objectToPost }
+            data:  objectToPost 
         })
         yield put({
             type: 'GET_GIFS_FROM_FAVORITES'
@@ -65,7 +70,7 @@ function* getGifsFromFavorites() {
     yield put({ type: 'SET_FAVORITES', payload: favoritesArray })
 }
 
-function* categorizeGifs() {
+function* categorizeGifs(action) {
     console.log('logging acion.payload in categorizeGifs', action.payload);
     const objectToPost = action.payload;
     try {
@@ -82,7 +87,7 @@ function* categorizeGifs() {
     }
 }
 
-function* deleteGifs() {
+function* deleteGifs(action) {
     try {
         yield axios({
             method: 'DELETE',
@@ -101,7 +106,7 @@ function* deleteGifs() {
 const searchReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_GIF_RESULT':
-            return action.payload;
+            return state = [action.payload];
         default:
             return state;
     }

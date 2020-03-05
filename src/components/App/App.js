@@ -13,6 +13,7 @@ class App extends Component {
     return (
       <div>
         <h1>Welcome to the Giphy project</h1>
+        <SearchForm />
         
       </div>
     );
