@@ -16,7 +16,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 function* watcher() {
     yield takeEvery('SEARCH_GIPHY', searchGiphy);
-    yield takeEvery('ADD_GIFS_TO_FAVORITES', addGifsToFavorites);
+    yield takeEvery('ADD_GIF_TO_FAVORITES', addGifToFavorites);
     yield takeEvery('GET_GIFS_FROM_FAVORITES', getGifsFromFavorites);
     yield takeEvery('CATEGORIZE_GIFS', categorizeGifs);
     yield takeEvery('DELETE_GIFS', deleteGifs);
@@ -24,24 +24,24 @@ function* watcher() {
 }
 
 function* searchGiphy(action) {
-    yield axios.get(`http://api.giphy.com/v1/gifs/random?tag=${action.payload}&api_key=Ebzn0mK2MW968EX6G8hJhT83ValOZy7Y`)
-        .then((response) => {
-            console.log('api response:', response);
-            res.send(response.data)
-        }).catch((error) => {
-            console.log(error);
-        })
-    yield put({ type: 'SET_GIF_RESULT', payload: response.data })
+   let response = yield axios.get(`http://api.giphy.com/v1/gifs/random?tag=${action.payload}&api_key=Ebzn0mK2MW968EX6G8hJhT83ValOZy7Y`)
+    let fileterdResponse= {
+        id: response.data.id,
+        url: response.data.image_url,
+        description: response.data.title,
+        category: '',
+    }
+    yield put({ type: 'SET_GIF_RESULT', payload: fileterdResponse })
 }
 
-function* addGifsToFavorites(action) {
-    console.log('logging giphyDescription in addGifsToFavorites', action.payload);
+function* addGifToFavorites(action) {
+    console.log('logging giphyDescription in addGifToFavorites', action.payload);
     const objectToPost = action.payload;
     try {
         yield axios({
             method: 'POST',
             url: '/api/favorite',
-            data: {objectToPost}
+            data: { objectToPost }
         })
         yield put({
             type: 'GET_GIFS_FROM_FAVORITES'
@@ -82,7 +82,7 @@ function* categorizeGifs() {
     }
 }
 
-function* deleteGifs(){
+function* deleteGifs() {
     try {
         yield axios({
             method: 'DELETE',
@@ -98,7 +98,7 @@ function* deleteGifs(){
     };
 }
 
-const searchReducer = (state= [], action ) =>{
+const searchReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_GIF_RESULT':
             return action.payload;
