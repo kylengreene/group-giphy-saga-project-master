@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     // return all categories
-    const queryText = `SELECT * FROM category ORDER BY name ASC`;
+    const queryText = `SELECT * FROM category ORDER BY category_name ASC`;
     pool.query(queryText)
         .then( (result) => {
             res.send(result.rows);
