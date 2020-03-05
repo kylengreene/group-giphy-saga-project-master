@@ -8,8 +8,10 @@ router.get('/', (req, res) => {
    let queryText = 'SELECT  gifs.id, gifs.description, gifs.url, gifs.category_id, category.category_name FROM gifs JOIN category ON gifs.category_id = category.id;'
    pool.query(queryText).then(results => {
      res.send(results.rows);
+     console.log('logging favrite row in router',results.rows);
+     
    }).catch(error => {
-     console.log('error getting koalas', error);
+     console.log('error getting gifs', error);
      res.sendStatus(500);
    })
 
@@ -49,7 +51,7 @@ router.post('/', (req, res) => {
 // });
 
 // delete a favorite
-router.delete('/', (req, res) => {
+router.delete('/:id', (req, res) => {
   res.sendStatus(200);
 });
 

@@ -31,7 +31,7 @@ function* searchGiphy(action) {
         id: response.data.data.id,
         url: response.data.data.image_url,
         description: response.data.data.title,
-        category: '',
+        category_id: 1
     }
     console.log('logging filtered response', filteredResponse);
     
@@ -56,13 +56,16 @@ function* addGifToFavorites(action) {
     }
 }
 function* getGifsFromFavorites() {
+    console.log('in getGifsFromFavorites');
+    
     let favoritesArray = [];
     console.log('aloha');
     yield axios({
         method: 'GET',
         url: '/api/favorite'
-    }).then((response) => {
+    }).then((response) => {  
         favoritesArray = response.data
+        console.log('logging response.data in getgifsfav', favoritesArray);
     }).catch((error) => {
         alert('Unable to get favorites from server');
     });
@@ -113,6 +116,8 @@ const searchReducer = (state = [], action) => {
 }
 
 const favoritesReducer = (state = [], action) => {
+    console.log('logging payload from favredcer', action.payload);
+    
     switch (action.type) {
         case 'SET_FAVORITES':
             return action.payload;

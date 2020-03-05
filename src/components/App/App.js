@@ -14,7 +14,7 @@ class App extends Component {
       <div>
         <h1>Welcome to the Giphy project</h1>
         <SearchForm />
-        
+        <FavoriteList />
       </div>
     );
   }

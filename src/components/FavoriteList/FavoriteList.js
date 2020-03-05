@@ -21,7 +21,7 @@ class FavoriteList extends Component {
         return (
             <div>
                 <h1>Favorite GIFs</h1><br />
-                {this.props.reduxState.favoriteReducer.map((item) => {
+                {this.props.reduxState.favoritesReducer.map((item) => {
                     return (
                         <FavoriteListItem key={item.id} item={item} />
                     );
