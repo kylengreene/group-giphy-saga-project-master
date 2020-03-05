@@ -4,13 +4,20 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import SearchForm from '../SearchForm/SearchForm'
 import FavoriteList from '../FavoriteList/FavoriteList'
 
-
 class FavoriteListItem extends Component {
+
+    removeItem = () => {
+        this.props.dispatch({
+            type: 'DELETE_GIF',
+            payload: this.props.item.id
+        })
+    }
 
     render() {
         return (
             <div>
-                <h1>FavoriteListItem</h1>
+                <img src={this.props.item.url} width="300px"/>
+                <button onClick={this.removeItem}>Remove from favorites</button>
             </div>
         );
     }
