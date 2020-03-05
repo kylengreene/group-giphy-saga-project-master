@@ -66,11 +66,36 @@ function* getGifsFromFavorites() {
 }
 
 function* categorizeGifs() {
-
+    console.log('logging acion.payload in categorizeGifs', action.payload);
+    const objectToPost = action.payload;
+    try {
+        yield axios({
+            method: 'PUT',
+            url: `/api/favorite/${action.payload.id}`,
+            data: { objectToPost }
+        })
+        yield put({
+            type: 'GET_GIFS_FROM_FAVORITES'
+        })
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 function* deleteGifs(){
-    
+    try {
+        yield axios({
+            method: 'DELETE',
+            url: `/api/favorite${action.payload}`
+        })
+        yield put({
+            type: 'GET_GIFS_FROM_FAVORITES'
+        })
+    }
+    catch (error) {
+        console.log(error);
+        alert('Unable to delete item');
+    };
 }
 
 const searchReducer = (state= [], action ) =>{
