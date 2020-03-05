@@ -33,20 +33,20 @@ router.post('/', (req, res) => {
 });
 
 // update given favorite with a category id
-router.put('/:favId', (req, res) => {
-  // req.body should contain a category_id to add to this favorite image
-  // let  = req.body;
-  // let id = req.params.id;
+// router.put('/:favId', (req, res) => {
+//   // req.body should contain a category_id to add to this favorite image
+//   // let  = req.body;
+//   // let id = req.params.id;
 
-  // console.log(`updating transfer of a koala ${id}`, koala);
-  // let queryString = `UPDATE "gifs" SET ready_to_transfer = 'Y' WHERE "id" = ${id}`
-  // pool.query(queryString).then((results) => {
-  //   res.sendStatus(200);
-  // }).catch((err) => {
-  //   res.sendStatus(500);
-  //   console.log(err);
-  })
-});
+//   // console.log(`updating transfer of a koala ${id}`, koala);
+//   // let queryString = `UPDATE "gifs" SET ready_to_transfer = 'Y' WHERE "id" = ${id}`
+//   // pool.query(queryString).then((results) => {
+//   //   res.sendStatus(200);
+//   // }).catch((err) => {
+//   //   res.sendStatus(500);
+//   //   console.log(err);
+//   })
+// });
 
 // delete a favorite
 router.delete('/', (req, res) => {
