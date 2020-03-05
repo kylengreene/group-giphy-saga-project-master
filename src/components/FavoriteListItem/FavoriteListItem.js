@@ -8,7 +8,7 @@ class FavoriteListItem extends Component {
 
     removeItem = () => {
         this.props.dispatch({
-            type: 'DELETE_GIF',
+            type: 'DELETE_GIFS',
             payload: this.props.item.id
         })
     }

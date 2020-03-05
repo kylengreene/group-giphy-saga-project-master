@@ -52,7 +52,15 @@ router.post('/', (req, res) => {
 
 // delete a favorite
 router.delete('/:id', (req, res) => {
-  res.sendStatus(200);
+  
+  let gifId = req.body.gifId;
+  let queryText = `DELETE FROM gifs WHERE id=$1`
+  pool.query(queryText, [gifId]).then((results)=>{
+    res.sendStatus(200);
+  }).catch((err) => {
+    res.sendStatus(500);
+    console.log(err);
+  })
 });
 
 module.exports = router;

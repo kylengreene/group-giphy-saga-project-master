@@ -91,10 +91,13 @@ function* categorizeGifs(action) {
 }
 
 function* deleteGifs(action) {
+    console.log('logging action.payload from delete', action.payload);
+    let gifId = action.payload;
     try {
         yield axios({
             method: 'DELETE',
-            url: `/api/favorite${action.payload}`
+            url: `/api/favorite/${action.payload}`,
+            data: {gifId}
         })
         yield put({
             type: 'GET_GIFS_FROM_FAVORITES'
