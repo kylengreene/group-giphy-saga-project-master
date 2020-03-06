@@ -28,7 +28,7 @@ class FavoriteListItem extends Component {
     }
 
     formDefault = () => {
-        if ( )
+      
     }
 
     render() {
