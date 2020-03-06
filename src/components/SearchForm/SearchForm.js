@@ -40,6 +40,7 @@ class SearchForm extends Component {
     render() {
         return (
             <div>
+                <h1>Search Form!</h1>
                 <input onChange={(event) => this.handleChange(event)} type="text" placeholder=""></input>
                 <button onClick={this.searchGiphy}>Search</button>
                 <ul>
@@ -58,4 +59,4 @@ const mapReduxStateToProps = (reduxState) => ({
 
 export default connect(mapReduxStateToProps)(SearchForm);
 
-//Send response object's data 
+//Send resp
