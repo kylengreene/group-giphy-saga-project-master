@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
-import FavoriteList from '../FavoriteList/FavoriteList'
-import FavoriteListItem from '../FavoriteListItem/FavoriteListItem'
+import FavoriteList from '../FavoriteList/FavoriteList';
+import FavoriteListItem from '../FavoriteListItem/FavoriteListItem';
+import { Button } from '@material-ui/core';
+import { Input } from '@material-ui/core';
+import { List } from '@material-ui/core';
+import { ListItem } from '@material-ui/core';
 
 class SearchForm extends Component {
 
@@ -40,14 +44,13 @@ class SearchForm extends Component {
     render() {
         return (
             <div>
-                <h1>Search Form!</h1>
-                <input onChange={(event) => this.handleChange(event)} type="text" placeholder=""></input>
-                <button onClick={this.searchGiphy}>Search</button>
-                <ul>
+                <Input onChange={(event) => this.handleChange(event)} type="text" placeholder=""></Input>
+                <Button onClick={this.searchGiphy}>Search</Button>
+                <List>
                     {this.props.reduxState.searchReducer
-                    .map((item)=><li key={item.id}><img src={item.url} width="300px"/></li>)}
-                    <button onClick={() => this.addToFavorites(this.props.reduxState.searchReducer[0])}>Add to Favorites</button>
-                </ul>
+                    .map((item)=><ListItem key={item.id}><img src={item.url} width="300px"/></ListItem>)}
+                    <Button onClick={() => this.addToFavorites(this.props.reduxState.searchReducer[0])}>Add to Favorites</Button>
+                </List>
             </div>
         );
     }
@@ -58,5 +61,3 @@ const mapReduxStateToProps = (reduxState) => ({
 });
 
 export default connect(mapReduxStateToProps)(SearchForm);
-
-//Send resp

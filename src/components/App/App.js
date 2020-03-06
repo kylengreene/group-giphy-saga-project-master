@@ -5,12 +5,13 @@ import SearchForm from '../SearchForm/SearchForm'
 import FavoriteList from '../FavoriteList/FavoriteList'
 import FavoriteListItem from '../FavoriteListItem/FavoriteListItem'
 import { Button } from '@material-ui/core';
+import './App.css';
 
 class App extends Component {
 
   state = {
     status: true,
-    buttonInjection: 'Favorites',
+    buttonInjection: 'Go to Favorites',
     pageRender: <SearchForm />
   }
 
@@ -18,13 +19,13 @@ class App extends Component {
     if (this.state.status) {
       this.setState({
         status: false,
-        buttonInjection: 'Search',
+        buttonInjection: 'Go to Search',
         pageRender: <FavoriteList />
       })
     } else {
       this.setState({
         status: true,
-        buttonInjection: 'Favorites',
+        buttonInjection: 'Go to Favorites',
         pageRender: <SearchForm />
       })
     }
