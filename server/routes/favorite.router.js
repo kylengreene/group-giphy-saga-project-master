@@ -5,15 +5,15 @@ const router = express.Router();
 
 // return all favorite images
 router.get('/', (req, res) => {
-   let queryText = 'SELECT  gifs.id, gifs.description, gifs.url, gifs.category_id, category.category_name FROM gifs JOIN category ON gifs.category_id = category.id;'
-   pool.query(queryText).then(results => {
-     res.send(results.rows);
-     console.log('logging favrite row in router',results.rows);
-     
-   }).catch(error => {
-     console.log('error getting gifs', error);
-     res.sendStatus(500);
-   })
+  let queryText = 'SELECT  gifs.id, gifs.description, gifs.url, gifs.category_id, category.category_name FROM gifs JOIN category ON gifs.category_id = category.id ORDER BY "id" ASC;'
+  pool.query(queryText).then(results => {
+    res.send(results.rows);
+    console.log('logging favrite row in router', results.rows);
+
+  }).catch(error => {
+    console.log('error getting gifs', error);
+    res.sendStatus(500);
+  })
 
 });
 
@@ -35,27 +35,25 @@ router.post('/', (req, res) => {
 });
 
 // update given favorite with a category id
-// router.put('/:favId', (req, res) => {
-//   // req.body should contain a category_id to add to this favorite image
-//   // let  = req.body;
-//   // let id = req.params.id;
+router.put('/:favId', (req, res) => {
+  console.log('logging body', req.body.category_id );
+  let category_id = req.body.category_id;
 
-//   // console.log(`updating transfer of a koala ${id}`, koala);
-//   // let queryString = `UPDATE "gifs" SET ready_to_transfer = 'Y' WHERE "id" = ${id}`
-//   // pool.query(queryString).then((results) => {
-//   //   res.sendStatus(200);
-//   // }).catch((err) => {
-//   //   res.sendStatus(500);
-//   //   console.log(err);
-//   })
-// });
+  let queryString = `UPDATE "gifs" SET category_id = ${category_id} WHERE "id" = ${req.params.favId}`
+  pool.query(queryString).then((results) => {
+    res.sendStatus(200);
+  }).catch((err) => {
+    res.sendStatus(500);
+    console.log(err);
+  })
+});
 
 // delete a favorite
 router.delete('/:id', (req, res) => {
-  
+
   let gifId = req.body.gifId;
   let queryText = `DELETE FROM gifs WHERE id=$1`
-  pool.query(queryText, [gifId]).then((results)=>{
+  pool.query(queryText, [gifId]).then((results) => {
     res.sendStatus(200);
   }).catch((err) => {
     res.sendStatus(500);

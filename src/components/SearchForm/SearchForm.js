@@ -45,7 +45,7 @@ class SearchForm extends Component {
                 <button onClick={this.searchGiphy}>Search</button>
                 <ul>
                     {this.props.reduxState.searchReducer
-                    .map((item)=><li key={item.id}><img src={item.url} /></li>)}
+                    .map((item)=><li key={item.id}><img src={item.url} width="300px"/></li>)}
                     <button onClick={() => this.addToFavorites(this.props.reduxState.searchReducer[0])}>Add to Favorites</button>
                 </ul>
             </div>
