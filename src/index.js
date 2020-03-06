@@ -24,7 +24,10 @@ function* watcher() {
 }
 
 function* searchGiphy(action) {
-   let response = yield axios.get(`http://api.giphy.com/v1/gifs/random?tag=${action.payload}&api_key=Ebzn0mK2MW968EX6G8hJhT83ValOZy7Y`)
+   let response = yield axios({
+       method: 'GET',
+       url: `/api/search/${action.payload}`,
+   })
    console.log('logging respone from searchGiphy', response );
     
    let filteredResponse= {

@@ -26,6 +26,7 @@ class FavoriteListItem extends Component {
         })
     }
 
+
     render() {
         return (
             <div>
