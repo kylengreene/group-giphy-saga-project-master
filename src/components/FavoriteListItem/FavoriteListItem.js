@@ -23,6 +23,14 @@ class FavoriteListItem extends Component {
         })
     }
 
+    componentDidMount = () => {
+        this.formDefault();
+    }
+
+    formDefault = () => {
+        if ( )
+    }
+
     render() {
         return (
             <div>
