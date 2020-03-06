@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
-import FavoriteList from '../FavoriteList/FavoriteList';
-import FavoriteListItem from '../FavoriteListItem/FavoriteListItem';
 import { Button } from '@material-ui/core';
 import { Input } from '@material-ui/core';
 import { List } from '@material-ui/core';
@@ -48,7 +45,7 @@ class SearchForm extends Component {
                 <Button onClick={this.searchGiphy}>Search</Button>
                 <List>
                     {this.props.reduxState.searchReducer
-                    .map((item)=><ListItem class="searchResult" key={item.id}><img src={item.url} width="300px"/></ListItem>)}
+                    .map((item)=><ListItem class="searchResult" key={item.id}><img alt="gif" src={item.url} width="300px"/></ListItem>)}
                     <Button onClick={() => this.addToFavorites(this.props.reduxState.searchReducer[0])}>Add to Favorites</Button>
                 </List>
             </div>

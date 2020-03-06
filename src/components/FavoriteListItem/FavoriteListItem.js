@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
-import SearchForm from '../SearchForm/SearchForm'
-import FavoriteList from '../FavoriteList/FavoriteList'
 import { FormControl } from '@material-ui/core';
 import { Select } from '@material-ui/core';
 import { Button } from '@material-ui/core';
@@ -30,7 +27,7 @@ class FavoriteListItem extends Component {
     render() {
         return (
             <div>
-                <img src={this.props.item.url} width="300px" /><br />
+                <img alt="gif" src={this.props.item.url} width="300px" /><br />
                 <Button onClick={this.removeItem}>Remove from favorites</Button>
                 <FormControl>
                     <Select onChange={(event) => this.changeCategory(event, this.props.item.id)} defaultValue={this.props.item.category_id}>

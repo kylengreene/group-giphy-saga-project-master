@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import SearchForm from '../SearchForm/SearchForm'
 import FavoriteList from '../FavoriteList/FavoriteList'
-import FavoriteListItem from '../FavoriteListItem/FavoriteListItem'
 import { Button } from '@material-ui/core';
 import './App.css';
 

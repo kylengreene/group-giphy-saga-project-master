@@ -78,7 +78,6 @@ function* getGifsFromFavorites() {
 
 function* categorizeGifs(action) {
     yield console.log('logging acion.payload.id in categorizeGifs', action.payload.id);
-    const objectToPost = action.payload;
     try {
         yield axios({
             method: 'PUT',
