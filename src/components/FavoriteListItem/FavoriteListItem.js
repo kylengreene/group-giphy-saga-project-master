@@ -30,11 +30,10 @@ class FavoriteListItem extends Component {
     render() {
         return (
             <div>
-                <img src={this.props.item.url} width="300px" />
-                <Button onClick={this.removeItem}>Remove from favorites</Button><br />
-                <FormControl onChange={(event) => this.changeCategory(event,this.props.item.id)}>
-                    <Select>
-                        <option>{this.props.item.category_id}</option>
+                <img src={this.props.item.url} width="300px" /><br />
+                <Button onClick={this.removeItem}>Remove from favorites</Button>
+                <FormControl>
+                    <Select onChange={(event) => this.changeCategory(event, this.props.item.id)} defaultValue={this.props.item.category_id}>
                         <option value="1">Funny</option>
                         <option value="2">Sports</option>
                         <option value="3">Memes</option>
